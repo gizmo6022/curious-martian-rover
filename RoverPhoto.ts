@@ -4,4 +4,6 @@ export interface RoverPhoto {
     camera: string;
     imgSrc: String;
     earthDate: String;
+    seen: boolean;
+    initIndex: number;
 }
