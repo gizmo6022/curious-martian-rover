@@ -4,37 +4,42 @@ import { RouterOutlet } from '@angular/router';
 import { RoverPhotoRetrievalService } from './services/rover-photo-retrieval.service';
 import { RoverPhoto } from '../../RoverPhoto';
 import { PhotoSelectionContainerComponent } from './components/photo-selection-container/photo-selection-container.component';
-import { BehaviorSubject, Observable, Subscription, from, of, tap } from 'rxjs';
+import { CameraWheelComponent } from './components/camera-wheel/camera-wheel.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,PhotoSelectionContainerComponent],
-  template: `@for(photo of roverPhotos(); track photo.id){
+  imports: [CommonModule, RouterOutlet,PhotoSelectionContainerComponent, CameraWheelComponent],
+  template: `
+  <div id = "camera-wheel-wrapper">
+  <app-camera-wheel [availableCameras] = availableCameras/> 
+  </div>
+  @for(photo of roverPhotos(); track photo.id){  
     <p>{{photo.id}} </p>}
             <app-photo-selection-container [roverPhotos]="roverPhotos"></app-photo-selection-container>
             <p>{{displayedPhoto.id}}</p>
+            @for(photo of availableCameras(); track photo){  
+    <p>{{photo}} </p>}
             `,
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'curious-martian-rover';
-  displayedRoverCamera: WritableSignal<String>= signal<String>("ALL");
+  displayedRoverCamera = signal<String>("ALL");
   displayedPhoto: RoverPhoto = {id: -1, sol: -1, camera: "", imgSrc: "", earthDate: "", seen: false, initIndex: -1,};
-
-  subscriptions : Subscription = new Subscription;
+  availableCameras = this.photoServ.availableCameras;
+  cameraNameArray = ["ALL", "FHAZ", "RHAZ", "MAST", "CHEMCAM", 'MAHLI', "MARDI", "NAVCAM"];
   roverPhotos = this.photoServ.roverPhotos;
   
   constructor(private photoServ : RoverPhotoRetrievalService){}
 
 
 
-  ngOnInit(): void{    
+  ngOnInit(): void{
   }
 
   ngOnDestroy(){
-    this.subscriptions.unsubscribe()
   }
 
   onCameraSelection(camera : string):void {
@@ -42,13 +47,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 }
 
-// ALL : RoverPhoto[];
-// FHAZ : RoverPhoto[];
-// RHAZ : RoverPhoto[];
-// MAST : RoverPhoto[];
-// CHEMCAM: RoverPhoto[];	
-// MAHLI: RoverPhoto[];
-// MARDI: RoverPhoto[];
-// NAVCAM: RoverPhoto[];
+// ALL
+// FHAZ
+// RHAZ
+// MAST
+// CHEMCAM
+// MAHLI
+// MARDI
+// NAVCAM
 
 

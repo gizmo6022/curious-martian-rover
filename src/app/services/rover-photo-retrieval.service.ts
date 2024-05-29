@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, Signal,computed } from '@angular/core';
 import { RoverPhoto } from '../../../RoverPhoto';
 import { BehaviorSubject, Observable, combineLatest, from, map, tap} from 'rxjs';
 import {toSignal} from '@angular/core/rxjs-interop'
@@ -28,6 +28,7 @@ export class RoverPhotoRetrievalService {
       
       //expose observables as Signal
       roverPhotos = toSignal<RoverPhoto[], RoverPhoto[]>(this.RoverPhotosObser$, {initialValue: []});
+      availableCameras = computed(()=> this.getCurrentCameras(this.roverPhotos()));
       
   constructor() {
   }
@@ -56,6 +57,13 @@ export class RoverPhotoRetrievalService {
 
   cameraSelected(cameraName : string):void {
     this.cameraSelectedSubject.next(cameraName)
+  }
+
+  getCurrentCameras(photoArr: RoverPhoto[]) : String[]{
+     let names = ["FHAZ", "RHAZ", "MAST", "CHEMCAM", 'MAHLI', "MARDI", "NAVCAM"]
+     let availableNames : String[] = ["ALL"];
+     names.forEach(name => {if(photoArr.some((e)=> e.camera == name)){availableNames.push(name)}})
+    return availableNames;
   }
 
 }

@@ -22,6 +22,6 @@ export class PhotoSelectionContainerComponent {
   edit(){
     this.roverPhotos()[0].id = this.x;
     this.x++;
-    console.log(this.roverPhotos);
+    console.log(this.roverPhotos());
   }
 }

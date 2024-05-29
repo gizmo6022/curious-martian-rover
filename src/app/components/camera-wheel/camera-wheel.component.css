@@ -1,0 +1,87 @@
+
+
+#activity-wheel-wrapper{
+    position: relative;
+    overflow: visible;
+    animation:spin 20s linear infinite;
+}
+
+#spinner-shroud{
+    width: 0;
+    position: absolute;
+    left: 0;
+    background: rgb(18, 24, 18);
+    z-index: 16;
+    align-self: start;
+
+    border-right: 1vw solid rgb(7, 94, 29);
+    height: 33vw;
+} 
+
+
+
+.spinner-shader{
+    position: absolute;
+    z-index: 16;
+    border-radius: 50% 50%;
+    top: 0;
+
+
+    left: -16.5vw;
+    width: 33vw;
+    height: 33vw;
+}
+
+#spinner-light{
+    background-image: radial-gradient(rgb(12 150 46 / 12%) 30%, rgb(35 30 30 / 0%) 70%);
+}
+
+#spinner-shadow{
+    background-image: radial-gradient(rgba(255, 255, 255, 0) 57%, rgba(12, 150, 46, 0.384));
+}
+
+
+#spinner-center{
+    position: absolute;
+    background: rgb(7, 94, 29);
+    z-index: 17;
+    border-radius: 50% 50%;
+
+    
+    height: 10.25vw;
+    width: 10.25vw;
+    left: -5vw;
+}
+
+#spinner-needle{
+    position: absolute;
+    z-index: 17;
+
+    border-top: 25px solid transparent;
+	border-right: 50px solid rgb(3, 146, 38);
+	border-bottom: 25px solid transparent;
+    height: vw;
+    width: 0vw;
+    left: 15.7vw;
+}
+
+@keyframes spin { 
+    100% { 
+        transform:rotate(360deg); 
+    }
+}
+.camera-item{
+    position: absolute;
+    display: flex;
+    transform-origin: left center;
+    text-align: right;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding: 0 1em 0 0;
+    width: 16.5vw;
+}
+.camera-item span{
+    display: block;
+    font-size: 2.5vw;
+}
