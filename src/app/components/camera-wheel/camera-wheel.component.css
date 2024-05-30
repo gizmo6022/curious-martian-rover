@@ -60,9 +60,8 @@
     border-top: 25px solid transparent;
 	border-right: 50px solid rgb(3, 146, 38);
 	border-bottom: 25px solid transparent;
-    height: vw;
     width: 0vw;
-    left: 15.7vw;
+    left: 15.4vw;
 }
 
 @keyframes spin { 
@@ -70,18 +69,24 @@
         transform:rotate(360deg); 
     }
 }
-.camera-item{
+.camera-panel{
     position: absolute;
     display: flex;
     transform-origin: left center;
     text-align: right;
     justify-content: flex-end;
     align-items: center;
-
-    padding: 0 1em 0 0;
     width: 16.5vw;
+    height: 2px;
+    align-content: center;
+    top: 1px;
 }
-.camera-item span{
+.camera-panel span{
     display: block;
-    font-size: 2.5vw;
+    font-size: 2.3vw;
+    position: relative;
+    left: -1vw;
+}
+.available{
+    background-color: brown;
 }

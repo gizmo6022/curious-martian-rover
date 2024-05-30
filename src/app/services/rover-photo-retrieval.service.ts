@@ -59,9 +59,9 @@ export class RoverPhotoRetrievalService {
     this.cameraSelectedSubject.next(cameraName)
   }
 
-  getCurrentCameras(photoArr: RoverPhoto[]) : String[]{
+  getCurrentCameras(photoArr: RoverPhoto[]) : string[]{
      let names = ["FHAZ", "RHAZ", "MAST", "CHEMCAM", 'MAHLI', "MARDI", "NAVCAM"]
-     let availableNames : String[] = ["ALL"];
+     let availableNames : string[] = ["ALL"];
      names.forEach(name => {if(photoArr.some((e)=> e.camera == name)){availableNames.push(name)}})
     return availableNames;
   }

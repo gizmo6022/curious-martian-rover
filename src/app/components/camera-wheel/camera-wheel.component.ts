@@ -1,15 +1,16 @@
-import { Component, OnInit, Input, signal, Signal, AfterViewInit, effect } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-camera-wheel',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   template:`  <div class ="spinner-shader" id="spinner-light"></div>
   <div class ="spinner-shader" id="spinner-shadow"></div>
-  <div id="activity-wheel-wrapper">
-  @for(camera of availableCameras(); track camera) {
-      <div class = "camera-item" id ="camera{{$index}}">{{camera}}</div>
-   } 
+  <div #panelRef id="activity-wheel-wrapper">
+    @for(camera of cameraNames; track camera;){
+      <div class="camera-panel" id ="camera{{$index}}" [style]="rotatePanel($index)" [ngClass] = "panelClass(camera)"><span>{{camera}}</span></div>
+    }
   </div>
    <div id="spinner-center"></div>
    <div id="spinner-shroud"></div>
@@ -17,41 +18,32 @@ import { Component, OnInit, Input, signal, Signal, AfterViewInit, effect } from 
   styleUrl: './camera-wheel.component.css'
 })
 export class CameraWheelComponent implements OnInit, AfterViewInit {
-    @Input() availableCameras: Signal<String[]>= signal<String[]>([]);
-    constructor(){
+    @Input() cameraNames: string[] = [];
+    @Input()  isAvailable : Record<string, boolean> = {
     }
+    cameraNameArray : string[] = [];
+
+    panelClass(camera: string) {
+      return {
+        "available" : this.isAvailable[camera]
+      }
+    }
+
+
+    rotatePanel(x : number): string {
+      let degreesOfArc = (360/this.cameraNames.length) * x;
+      let y = `rotate: -${degreesOfArc}deg; zIndex : ${x};`
+      return y;
+    }
+
+    
+
 
     ngOnInit(){
     }
-
-    ngAfterViewInit(): void {
-      this.wheelPanelsStyling()
-    }
-
-
-    wheelPanelsStyling():void{
-      let panels = document.getElementsByClassName("camera-item");
-      let container = document.getElementsByTagName("app-camera-wheel")[0] as HTMLElement;
-      if(panels && container){
-        let pHeight = ((container.offsetHeight/4)*2*(3.14))/panels.length;
-        let i = 0;
-        let degreesOfArc = 360/panels.length;
     
-        while(panels.item(i)){
-          let p = panels.item(i) as HTMLElement ?? panels.item(i);
-          p.style.height = `${pHeight}px`;
-          p.style.zIndex = `${i}`;
-          p.style.top =`-${pHeight/2}px`
-          p.style.rotate =`-${degreesOfArc*i}deg`;
-          p.style.fontSize = `${10}pt`;
-          
-          i++;
-          console.log("heyy")
-        }
-      }
-      
-      }
-
+    ngAfterViewInit(): void {
+    }
     
 }
 

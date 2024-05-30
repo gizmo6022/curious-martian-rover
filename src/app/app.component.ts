@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Signal, WritableSignal, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, Signal, computed, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { RoverPhotoRetrievalService } from './services/rover-photo-retrieval.service';
@@ -10,10 +10,10 @@ import { CameraWheelComponent } from './components/camera-wheel/camera-wheel.com
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,PhotoSelectionContainerComponent, CameraWheelComponent],
+  imports: [CommonModule, RouterOutlet, PhotoSelectionContainerComponent, CameraWheelComponent],
   template: `
   <div id = "camera-wheel-wrapper">
-  <app-camera-wheel [availableCameras] = availableCameras/> 
+  <app-camera-wheel [cameraNames] = "cameraNameArray" [isAvailable] = "isAvailable()"/> 
   </div>
   @for(photo of roverPhotos(); track photo.id){  
     <p>{{photo.id}} </p>}
@@ -26,23 +26,34 @@ import { CameraWheelComponent } from './components/camera-wheel/camera-wheel.com
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'curious-martian-rover';
-  displayedRoverCamera = signal<String>("ALL");
-  displayedPhoto: RoverPhoto = {id: -1, sol: -1, camera: "", imgSrc: "", earthDate: "", seen: false, initIndex: -1,};
+  displayedPhoto: RoverPhoto = { id: -1, sol: -1, camera: "", imgSrc: "", earthDate: "", seen: false, initIndex: -1, };
+
+  //Camera Signal from obseravable
   availableCameras = this.photoServ.availableCameras;
+
+  //list of camera names
   cameraNameArray = ["ALL", "FHAZ", "RHAZ", "MAST", "CHEMCAM", 'MAHLI', "MARDI", "NAVCAM"];
+
+  //signal Map for if that camer is available, computed from available cameras.
+  isAvailable: Signal<Record<string, boolean>> = computed(() => {
+    let cameraAvailabilityMap: Record<string, boolean> = { "ALL": false, "FHAZ": false, "RHAZ": false, "MAST": false, "CHEMCAM": false, 'MAHLI': false, "MARDI": false, "NAVCAM": false };
+    this.availableCameras().forEach(element => cameraAvailabilityMap[element] = true)
+    return cameraAvailabilityMap
+  });
+
   roverPhotos = this.photoServ.roverPhotos;
-  
-  constructor(private photoServ : RoverPhotoRetrievalService){}
 
+  constructor(private photoServ: RoverPhotoRetrievalService) {
 
-
-  ngOnInit(): void{
   }
 
-  ngOnDestroy(){
+  ngOnInit(): void {
   }
 
-  onCameraSelection(camera : string):void {
+  ngOnDestroy() {
+  }
+
+  onCameraSelection(camera: string): void {
     this.photoServ.cameraSelected(camera);
   }
 }
