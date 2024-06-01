@@ -3,7 +3,16 @@
 #activity-wheel-wrapper{
     position: relative;
     overflow: visible;
-    animation:spin 20s linear infinite;
+    animation:spin 1s ease-in 1;
+}
+
+@keyframes spin { 
+    1% { 
+        transform:rotate(200deg); 
+    }
+    99%{
+        transform: rotate(0deg);
+    }
 }
 
 #spinner-shroud{
@@ -22,7 +31,7 @@
 
 .spinner-shader{
     position: absolute;
-    z-index: 16;
+    z-index: -1;
     border-radius: 50% 50%;
     top: 0;
 
@@ -59,16 +68,11 @@
 
     border-top: 25px solid transparent;
 	border-right: 50px solid rgb(3, 146, 38);
-	border-bottom: 25px solid transparent;
+    border-bottom: 25px solid transparent;
     width: 0vw;
-    left: 15.4vw;
+    left: 15.5vw;
 }
 
-@keyframes spin { 
-    100% { 
-        transform:rotate(360deg); 
-    }
-}
 .camera-panel{
     position: absolute;
     display: flex;
@@ -80,13 +84,17 @@
     height: 2px;
     align-content: center;
     top: 1px;
+    z-index: 16;
 }
 .camera-panel span{
     display: block;
-    font-size: 2.3vw;
+    height: 3vw;
+    font-size: 3vw;
     position: relative;
-    left: -1vw;
+    left: -1.4vw;
+    color: rgb(7, 78, 25);
+    z-index: 16;
 }
-.available{
-    background-color: brown;
+.available span{
+    color: rgb(21, 187, 62) !important;
 }
