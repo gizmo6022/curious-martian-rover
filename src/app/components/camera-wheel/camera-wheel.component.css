@@ -1,4 +1,18 @@
 
+#cameraWheel{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: none;
+    z-index: -1000;
+    overflow: hidden;
+
+    width: 16.5vw;
+    height: 33vw;
+    border-radius:  0 16.5vw 16.5vw 0;
+    margin: 0 1vw 0 0;
+}
 
 #activity-wheel-wrapper{
     position: relative;
@@ -19,13 +33,39 @@
     width: 0;
     position: absolute;
     left: 0;
+    top: 0;
     background: rgb(18, 24, 18);
     z-index: 16;
     align-self: start;
 
     border-right: 1vw solid rgb(7, 94, 29);
-    height: 33vw;
+    height: 100%;
 } 
+#spinner-center{
+    position: absolute;
+    background: rgb(7, 94, 29);
+    z-index: 17;
+    border-radius: 50% 50%;
+    top: 33.75%;
+
+    
+    height: 31.5%;
+    width: 63%;
+    left: -31%;
+}
+
+#spinner-needle{
+    position: absolute;
+    z-index: 17;
+    top: 49%;
+
+
+    border-top: 5px solid transparent;
+	border-right: 5px solid rgb(3, 146, 38);
+    border-bottom: 5px solid transparent;
+    width: 0vw;
+    left: 95%;
+}
 
 
 
@@ -36,9 +76,9 @@
     top: 0;
 
 
-    left: -16.5vw;
-    width: 33vw;
-    height: 33vw;
+    left: -100%;
+    width: 200%;
+    height: 100%;
 }
 
 #spinner-light{
@@ -47,30 +87,6 @@
 
 #spinner-shadow{
     background-image: radial-gradient(rgba(255, 255, 255, 0) 57%, rgba(12, 150, 46, 0.384));
-}
-
-
-#spinner-center{
-    position: absolute;
-    background: rgb(7, 94, 29);
-    z-index: 17;
-    border-radius: 50% 50%;
-
-    
-    height: 10.25vw;
-    width: 10.25vw;
-    left: -5vw;
-}
-
-#spinner-needle{
-    position: absolute;
-    z-index: 17;
-
-    border-top: 25px solid transparent;
-	border-right: 50px solid rgb(3, 146, 38);
-    border-bottom: 25px solid transparent;
-    width: 0vw;
-    left: 15.5vw;
 }
 
 .camera-panel{

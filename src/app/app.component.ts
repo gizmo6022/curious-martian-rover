@@ -13,14 +13,12 @@ import { CameraWheelComponent } from './components/camera-wheel/camera-wheel.com
   imports: [CommonModule, RouterOutlet, PhotoSelectionContainerComponent, CameraWheelComponent],
   template: `
   <h1>The Curious Martian Rover</h1>
-  <div id = "camera-wheel-wrapper">
   <app-camera-wheel [cameraNames] = "cameraNameArray" [isAvailable] = "isAvailable()" [cameraSelectionState] = "cameraSelectionState" (cameraChangeEvent)="onCameraSelection($event)"/> 
-  </div>
 
 
 
-  @for(photo of roverPhotos(); track photo.id){  
-    <p>{{photo.id}} </p>}
+  <!-- @for(photo of roverPhotos(); track photo.id){  
+    <p>{{photo.id}} </p>} -->
             <app-photo-selection-container [roverPhotos]="roverPhotos"></app-photo-selection-container>
             <p>{{displayedPhoto.id}}</p>
             @for(photo of availableCameras(); track photo){  

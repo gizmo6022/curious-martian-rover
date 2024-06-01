@@ -6,16 +6,19 @@ import { CommonModule} from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template:`
+    <div id = "camerawheel">
     <div class ="spinner-shader" id="spinner-light"></div>
     <div class ="spinner-shader" id="spinner-shadow"></div>
+    <div id="spinner-center"></div>
+    <div id="spinner-shroud"></div>
     <div #panelRef id="activity-wheel-wrapper" [style]="cameraRotation()">
       @for(camera of cameraNames; track camera;){
         <div class="camera-panel" id ="camera{{$index}}" [style]="rotatePanel($index)" [ngClass] = "panelClass(camera)" (click)="cameraPanelClick(camera)"><span (click)="cameraPanelClick(camera)">{{camera}}</span></div>
       }
     </div>
-    <div id="spinner-center"></div>
-    <div id="spinner-shroud"></div>
-      <div id="spinner-needle"></div>`,
+
+      <div id="spinner-needle"></div>
+      </div>`,
   styleUrl: './camera-wheel.component.css'
 })
 export class CameraWheelComponent implements OnInit, AfterViewInit {
@@ -53,7 +56,7 @@ export class CameraWheelComponent implements OnInit, AfterViewInit {
 
 
     ngOnInit(){
-      setTimeout(()=>this.cameraSelectionState.set("NAVCAM"),1000)
+      //setTimeout(()=>this.cameraSelectionState.set("NAVCAM"),1000)
     }
     
     ngAfterViewInit(): void {

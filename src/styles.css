@@ -91,11 +91,7 @@ h2 span{
 }
 
 .camera-wheel-wrapper{
-    display: grid;
-    grid-template-areas:'display wheel button'
-    'display wheel currentActivity';
-    grid-column: 1/4;
-    margin: 0 auto;
+    display: contents;
 }
 
 
