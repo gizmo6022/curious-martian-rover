@@ -1,23 +1,25 @@
 
 #cameraWheel{
-    position: absolute;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     min-width: none;
-    z-index: -1000;
     overflow: hidden;
 
     width: 16.5vw;
     height: 33vw;
     border-radius:  0 16.5vw 16.5vw 0;
     margin: 0 1vw 0 0;
+    pointer-events: none;
 }
 
 #activity-wheel-wrapper{
     position: relative;
     overflow: visible;
     animation:spin 1s ease-in 1;
+    pointer-events: none;
+    transition: rotate .5s;
 }
 
 @keyframes spin { 
@@ -32,7 +34,7 @@
 #spinner-shroud{
     width: 0;
     position: absolute;
-    left: 0;
+    left: -100%;
     top: 0;
     background: rgb(18, 24, 18);
     z-index: 16;
@@ -40,6 +42,7 @@
 
     border-right: 1vw solid rgb(7, 94, 29);
     height: 100%;
+    pointer-events: none;
 } 
 #spinner-center{
     position: absolute;
@@ -52,6 +55,7 @@
     height: 31.5%;
     width: 63%;
     left: -31%;
+    pointer-events: none;
 }
 
 #spinner-needle{
@@ -65,6 +69,7 @@
     border-bottom: 5px solid transparent;
     width: 0vw;
     left: 95%;
+    pointer-events: none;
 }
 
 
@@ -79,6 +84,7 @@
     left: -100%;
     width: 200%;
     height: 100%;
+    pointer-events: none;
 }
 
 #spinner-light{
@@ -101,6 +107,7 @@
     align-content: center;
     top: 1px;
     z-index: 16;
+    
 }
 .camera-panel span{
     display: block;
@@ -110,7 +117,14 @@
     left: -1.4vw;
     color: rgb(7, 78, 25);
     z-index: 16;
+    pointer-events: none;
 }
 .available span{
     color: rgb(21, 187, 62) !important;
+    pointer-events: all;
+}
+
+.available span:hover{
+    background-color: rgb(16, 54, 26) !important;
+    cursor: pointer;
 }

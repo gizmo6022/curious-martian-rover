@@ -13,7 +13,7 @@ import { CameraWheelComponent } from './components/camera-wheel/camera-wheel.com
   imports: [CommonModule, RouterOutlet, PhotoSelectionContainerComponent, CameraWheelComponent],
   template: `
   <h1>The Curious Martian Rover</h1>
-  <app-camera-wheel [cameraNames] = "cameraNameArray" [isAvailable] = "isAvailable()" [cameraSelectionState] = "cameraSelectionState" (cameraChangeEvent)="onCameraSelection($event)"/> 
+  <app-camera-wheel [cameraNames] = "cameraNameArray" [isAvailable] = "isAvailable()" [cameraSelectionState] = "cameraSelectionState" (cameraPanelClickEvent)="onCameraSelection($event)"/> 
 
 
 
@@ -59,9 +59,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
-  onCameraSelection($event : Event): void {
-    console.log($event)
-    //this.photoServ.cameraSelected($event);
+  onCameraSelection(camera: string): void {
+    this.cameraSelectionState.set(camera);
+    //this.photoServ.cameraSelected(camera);
   }
 }
 

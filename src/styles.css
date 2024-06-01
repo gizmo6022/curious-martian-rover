@@ -96,8 +96,8 @@ h2 span{
 
 
 app-camera-wheel{
-    position: relative;
-    display: flex;
+     position: relative;
+    /*display: flex;
     align-items: center;
     justify-content: flex-start;
     min-width: none;
@@ -108,7 +108,7 @@ app-camera-wheel{
     height: 33vw;
     border-radius:  0 16.5vw 16.5vw 0;
     margin: 0 1vw 0 0;
-    grid-area: wheel;
+    grid-area: wheel; */
 }
 
 
