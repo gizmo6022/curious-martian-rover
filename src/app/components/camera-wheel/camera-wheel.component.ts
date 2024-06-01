@@ -20,8 +20,10 @@ import { CommonModule} from '@angular/common';
     </div>
       <div id="spinner-needle"></div>
       </div>
-      <button (click)="rotatePanelArrowButton(true)"> => </button>
-      <button (click)="rotatePanelArrowButton(false)"> <=</button>
+      <div id = "buttonWrapper">
+      <button class = "dirButtons" (click)="rotatePanelArrowButton(true)"> ↑ </button>
+      <button class = "dirButtons"(click)="rotatePanelArrowButton(false)"> ↓ </button>
+    </div> 
       `,
   styleUrl: './camera-wheel.component.css'
 })
@@ -51,44 +53,33 @@ export class CameraWheelComponent implements OnInit, AfterViewInit {
       return y;
     }
 
-
-
-
     cameraPanelClick(x : string){
       this.cameraPanelClickEvent.emit(x);
-      console.log(x)
     }
 
     ngOnInit(){
-      //setTimeout(()=>this.cameraSelectionState.set("NAVCAM"),1000)
     }
     
     ngAfterViewInit(): void {
     }
 
     rotatePanelArrowButton(isUp: boolean){
+      //get index of current camera
       let x = this.cameraNames.indexOf(this.cameraSelectionState())
-      isUp
       if(isUp){
-        this.cameraPanelClickEvent.emit(this.getNextAvailable(x));
+          //increment to next
+          x++;
+          //check againts is availabel map
+          while(!this.isAvailable[this.cameraNames[x]]){
+            if(x <= (this.cameraNames.length-1)){
+              x++
+            } else {
+              x = 0
+            }
+          }
+          this.cameraPanelClickEvent.emit(this.cameraNames[x]);
+      //same as above but decrmenting
       }else{
-        this.cameraPanelClickEvent.emit(this.getPreviousAvailable(x));
-      }
-    }
-    
-    getNextAvailable(x : number) : string {
-      x++;
-      while(this.isAvailable[this.cameraNames[x]] == false){
-        console.log(x)
-        if(x < this.cameraNames.length-1){
-          x++
-        } else {
-          x = 0
-        }
-      }
-      return this.cameraNames[x];}
-
-    getPreviousAvailable(x : number) : string {
         x--;
         while(!this.isAvailable[this.cameraNames[x]]){
           if(x > -1){
@@ -97,8 +88,9 @@ export class CameraWheelComponent implements OnInit, AfterViewInit {
             x = this.cameraNames.length
           }
         }
-        return this.cameraNames[x]
+        this.cameraPanelClickEvent.emit(this.cameraNames[x]);
       }
+    }
 }
 
 

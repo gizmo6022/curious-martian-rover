@@ -37,7 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
   availableCameras = this.photoServ.availableCameras;
   //list of camera names
   cameraNameArray = ["ALL", "FHAZ", "RHAZ", "MAST", "CHEMCAM", 'MAHLI', "MARDI", "NAVCAM"];
-  //signal Map for if that camer is available, computed from available cameras.
+  //signal Map for if that camera is available, computed from available cameras.
   isAvailable: Signal<Record<string, boolean>> = computed(() => {
     let cameraAvailabilityMap: Record<string, boolean> = { "ALL": false, "FHAZ": false, "RHAZ": false, "MAST": false, "CHEMCAM": false, 'MAHLI': false, "MARDI": false, "NAVCAM": false };
     this.availableCameras().forEach(element => cameraAvailabilityMap[element] = true)

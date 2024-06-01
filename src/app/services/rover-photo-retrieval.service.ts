@@ -18,6 +18,9 @@ export class RoverPhotoRetrievalService {
       //handles Async Fetch to API
       //remove String Argument!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FOR DEV ONLY
       Photos$ : Observable<RoverPhoto[]> = from(this.fetchLatestRoverPhotos("http://localhost:4200/assets/latest_photos.json"))
+      PhotosCallSignal = toSignal<RoverPhoto[], RoverPhoto[]>(this.Photos$, {initialValue: []});
+
+
       //action stream
       cameraSelectedSubject = new BehaviorSubject<string>('ALL')
       cameraSelected$ = this.cameraSelectedSubject.asObservable();
@@ -28,7 +31,7 @@ export class RoverPhotoRetrievalService {
       
       //expose observables as Signal
       roverPhotos = toSignal<RoverPhoto[], RoverPhoto[]>(this.RoverPhotosObser$, {initialValue: []});
-      availableCameras = computed(()=> this.getCurrentCameras(this.roverPhotos()));
+      availableCameras = computed(()=> this.getCurrentCameras(this.PhotosCallSignal()));
       
   constructor() {
   }
