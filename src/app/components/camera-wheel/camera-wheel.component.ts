@@ -30,7 +30,7 @@ import { CommonModule} from '@angular/common';
 export class CameraWheelComponent implements OnInit, AfterViewInit {
     @Input() cameraNames: string[] = [];
     @Input() isAvailable : Record<string, boolean> = {};
-    @Input() cameraSelectionState = signal("ALL" as string);
+    @Input() cameraSelectionState: Signal<string> = signal("ALL" as string);
     @Output() cameraPanelClickEvent = new EventEmitter<string>;
 
     //(rotates wheel): computed rotation of the wrapper div in order to properly display current camera

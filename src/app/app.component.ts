@@ -13,41 +13,26 @@ import { CameraWheelComponent } from './components/camera-wheel/camera-wheel.com
   imports: [CommonModule, RouterOutlet, PhotoSelectionContainerComponent, CameraWheelComponent],
   template: `
   <h1>The Curious Martian Rover</h1>
-  <app-camera-wheel [cameraNames] = "cameraNameArray" [isAvailable] = "isAvailable()" [cameraSelectionState] = "cameraSelectionState" (cameraPanelClickEvent)="onCameraSelection($event)"/> 
-
-
-
-  <!-- @for(photo of roverPhotos(); track photo.id){  
-    <p>{{photo.id}} </p>} -->
-            <app-photo-selection-container [roverPhotos]="roverPhotos"></app-photo-selection-container>
-            <p>{{displayedPhoto.id}}</p>
-            @for(photo of availableCameras(); track photo){  
-    <p>{{photo}} </p>}
-    <p>{{this.cameraSelectionState()}} </p>
-            `,
+  <app-camera-wheel [cameraNames] = "cameraNameArray" [isAvailable] = "availableCaemraMap()" [cameraSelectionState] = "cameraSelectionState" (cameraPanelClickEvent)="onCameraSelection($event)"/>
+  <button (click) = "onRandomizeButton()"></button>
+  <img src="{{displayedPhoto().imgSrc}}"/>         `,
   styleUrl: './app.component.css'
 })
 
 
 export class AppComponent implements OnInit, OnDestroy {
   title = 'curious-martian-rover';
-  displayedPhoto: RoverPhoto = { id: -1, sol: -1, camera: "", imgSrc: "", earthDate: "", seen: false, initIndex: -1, };
-
+  displayedPhoto = this.photoServ.displayedPhoto;
   //Camera Signal from obseravable
   availableCameras = this.photoServ.availableCameras;
   //list of camera names
-  cameraNameArray = ["ALL", "FHAZ", "RHAZ", "MAST", "CHEMCAM", 'MAHLI', "MARDI", "NAVCAM"];
+  cameraNameArray =  this.photoServ.cameraNameArray;
   //signal Map for if that camera is available, computed from available cameras.
-  isAvailable: Signal<Record<string, boolean>> = computed(() => {
-    let cameraAvailabilityMap: Record<string, boolean> = { "ALL": false, "FHAZ": false, "RHAZ": false, "MAST": false, "CHEMCAM": false, 'MAHLI': false, "MARDI": false, "NAVCAM": false };
-    this.availableCameras().forEach(element => cameraAvailabilityMap[element] = true)
-    return cameraAvailabilityMap
-  });
+  availableCaemraMap =this.photoServ.availableCameraMap;
   //camera Current State
-  cameraSelectionState = signal("ALL");
+  cameraSelectionState = this.photoServ.cameraSelectionState;
 
   roverPhotos = this.photoServ.roverPhotos;
-
 
 
   constructor(private photoServ: RoverPhotoRetrievalService) {
@@ -60,9 +45,12 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onCameraSelection(camera: string): void {
-    this.cameraSelectionState.set(camera);
-    //this.photoServ.cameraSelected(camera);
+    this.photoServ.cameraSelected(camera);
+  }
+  onRandomizeButton(){
+    this.photoServ.getRandomPhoto()
   }
 }
+
 
 
