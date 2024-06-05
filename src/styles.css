@@ -97,95 +97,29 @@ h2 span{
 
 app-camera-wheel{
      position: relative;
-    /*display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    min-width: none;
-    z-index: -1000;
-    overflow: hidden;
-
-    width: 16.5vw;
-    height: 33vw;
-    border-radius:  0 16.5vw 16.5vw 0;
-    margin: 0 1vw 0 0;
-    grid-area: wheel; */
 }
-
-
-
-app-go-button{
-    display: flex;
-    justify-self: center;
-    align-self: center;
-    flex-direction: column;
-    grid-area: button;
-
-}
-
-app-go-button button{
+button{
     background: transparent;
     transition-duration: 0.4s;
     background-color: rgb(7, 94, 29);
     border: none;
+    font-size: 2rem;
+    grid-column: 1 / 4;
+    text-align: center;
+    padding:  1rem .5rem;
+    
 
     font-size: 3rem;
     color: rgb(18, 24, 18);
     border-radius: 30px;
     padding: 10px 20px;
 }
-app-go-button button:hover{
+button:hover{
     background-color:  rgb(2, 202, 52);
     
 }
 
-app-go-button h3{
-    font-size: 2rem;
-    grid-column: 1 / 4;
-    text-align: center;
-    padding:  1rem .5rem;
-    
-}
 
 /* ----------------------------------- end Button -------------------------------- */
 /* ----------------------------------- begin display  -------------------------------- */
 
-app-output-display {
-    grid-area: display;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    overflow-y: scroll;
-
-
-    border: .5rem  solid rgb(7, 94, 29);
-    border-right: none;
-    border-radius:  30px 0 0 30px;
-    min-width: 20vw;
-    max-width: 33vw;
-    max-height: 33vw;
-}
-app-selected-act-li{
-    margin: 5px 0;
-}
-
-app-selected-act-li p {
-    text-align: center;
-
-    font-size: 2.5vw;
-    padding: 2px 2px;
-}
-
-app-selected-act-li p:hover{
-    background-color:  rgb(3, 146, 38);
-    color: rgb(18, 24, 18);
-    cursor: pointer;
-}
-
-
-/* ----------------------------------- end Button -------------------------------- */
-
-app-filter-container{
-    display: none;
-    grid-column: 1/4;
-    
-}

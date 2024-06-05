@@ -14,8 +14,13 @@ import { CameraWheelComponent } from './components/camera-wheel/camera-wheel.com
   template: `
   <h1>The Curious Martian Rover</h1>
   <app-camera-wheel [cameraNames] = "cameraNameArray" [isAvailable] = "availableCaemraMap()" [cameraSelectionState] = "cameraSelectionState" (cameraPanelClickEvent)="onCameraSelection($event)"/>
-  <button (click) = "onRandomizeButton()"></button>
-  <img src="{{displayedPhoto().imgSrc}}"/>         `,
+  <button (click) = "onNextRequest()">→</button> 
+  <button (click) = "onPreviousRequest()">←</button>
+  <button (click) = "onRandomizeButton()">Randomize</button>
+  
+  <img src="{{displayedPhoto().imgSrc}}"/> 
+  <p>ID: <span>{{displayedPhoto().id}}</span> | Camera: <span>{{displayedPhoto().camera}}</span> </p>
+  <p>Sole: <span>{{displayedPhoto().sol}}</span> | EarthDate: <span>{{displayedPhoto().earthDate}}</span></p>`,
   styleUrl: './app.component.css'
 })
 
@@ -49,6 +54,34 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   onRandomizeButton(){
     this.photoServ.getRandomPhoto()
+  }
+
+  getCameraFullName(name : string) : string {
+    switch (name){
+    case 'FHAZ': 
+      return 'Front Hazard Avoidance Camera';
+    case 'RHAZ':
+      return'Rear Hazard Avoidance Camera';
+    case 'MAST' :
+      return "Mast Camera";
+    case 'CHEMCAM' :
+      return'Chemistry and Camera Complex';		
+    case 'MAHLI' :	
+      return 'Mars Hand Lens Imager';
+    case "MARDI" :
+      return'Mars Descent Imager';		
+    case "NAVCAM" :	
+      return'Navigation Camera';
+    default :
+    return "";
+    }
+  }
+
+  onNextRequest(){
+    this.photoServ.getNextPhoto()
+  }
+  onPreviousRequest(){
+    this.photoServ.getPreviousPhoto()
   }
 }
 

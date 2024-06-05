@@ -81,7 +81,7 @@ export class RoverPhotoRetrievalService {
   //changes rover photos and updates current camera state
   cameraSelected(cameraName : string):void {
     this.cameraSelectedSubject.next(cameraName)
-    this.indexOfDispalyed.set(-1)
+    this.indexOfDispalyed.set(this.roverPhotos().length-1)
   }
 
   getCurrentAvailableCameras(photoArr: RoverPhoto[]) : string[]{
@@ -91,7 +91,25 @@ export class RoverPhotoRetrievalService {
   }
 
   getRandomPhoto(){
-    this.indexOfDispalyed.set(Math.floor(Math.random() * this.PhotosCallReturn().length));
+    this.indexOfDispalyed.set(Math.floor(Math.random() * this.roverPhotos().length));
+  }
+
+  getNextPhoto(){
+    const x = this.indexOfDispalyed() + 1;
+    if(this.roverPhotos()[x]){
+      this.indexOfDispalyed.set(x)
+     }else{
+      this.indexOfDispalyed.set(0)
+     }
+  }
+
+  getPreviousPhoto(){
+     const x = this.indexOfDispalyed() - 1;
+    if(x < 0){
+      this.indexOfDispalyed.set(this.roverPhotos().length-1)
+    }else{
+      this.indexOfDispalyed.set(x)
+    }
   }
 
 }
