@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Signal, computed, effect, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { RoverPhotoRetrievalService } from './services/rover-photo-retrieval.service';
@@ -14,10 +14,10 @@ import { CameraWheelComponent } from './components/camera-wheel/camera-wheel.com
   template: `
   <h1>The Curious Martian Rover</h1>
   <app-camera-wheel [cameraNames] = "cameraNameArray" [isAvailable] = "availableCaemraMap()" [cameraSelectionState] = "cameraSelectionState" (cameraPanelClickEvent)="onCameraSelection($event)"/>
+  <div>{{currentPhotoNumber()}}/{{roverPhotos().length}}</div>
   <button (click) = "onNextRequest()">→</button> 
   <button (click) = "onPreviousRequest()">←</button>
   <button (click) = "onRandomizeButton()">Randomize</button>
-  
   <img src="{{displayedPhoto().imgSrc}}"/> 
   <p>ID: <span>{{displayedPhoto().id}}</span> | Camera: <span>{{displayedPhoto().camera}}</span> </p>
   <p>Sole: <span>{{displayedPhoto().sol}}</span> | EarthDate: <span>{{displayedPhoto().earthDate}}</span></p>`,
@@ -38,6 +38,8 @@ export class AppComponent implements OnInit, OnDestroy {
   cameraSelectionState = this.photoServ.cameraSelectionState;
 
   roverPhotos = this.photoServ.roverPhotos;
+  currentPhotoNumber = computed(() =>{if(this.photoServ.indexOfDispalyed() < 0 ){ return this.roverPhotos().length
+  }else{return this.photoServ.indexOfDispalyed()+1}});
 
 
   constructor(private photoServ: RoverPhotoRetrievalService) {

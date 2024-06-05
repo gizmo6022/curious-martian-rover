@@ -38,9 +38,9 @@ export class RoverPhotoRetrievalService {
 
       //currently dislayed image
       //set to negative one to retrevie last in array
-      indexOfDispalyed : WritableSignal<number> = signal(-1);
-      displayedPhoto = computed(() => {if(this.indexOfDispalyed() > -1){
-        return this.roverPhotos()[this.indexOfDispalyed()]}
+      indexOfDispalyed : WritableSignal<number> = signal(this.roverPhotos().length-1);
+      displayedPhoto = computed(() => {
+        if(this.indexOfDispalyed() > -1){return this.roverPhotos()[this.indexOfDispalyed()]}
         else if(this.roverPhotos()[this.roverPhotos().length -1]){return this.roverPhotos()[this.roverPhotos().length -1]}
         else return { id: -1, sol: -1, camera: "", imgSrc: "", earthDate: "", seen: false, initIndex: -1, }});
 
