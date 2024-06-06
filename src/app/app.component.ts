@@ -5,12 +5,13 @@ import { RoverPhotoRetrievalService } from './services/rover-photo-retrieval.ser
 import { RoverPhoto } from '../../RoverPhoto';
 import { PhotoSelectionContainerComponent } from './components/photo-selection-container/photo-selection-container.component';
 import { CameraWheelComponent } from './components/camera-wheel/camera-wheel.component';
+import { DispalyPhotoComponent } from './components/dispaly-photo/dispaly-photo.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, PhotoSelectionContainerComponent, CameraWheelComponent],
+  imports: [CommonModule, RouterOutlet, PhotoSelectionContainerComponent, CameraWheelComponent, DispalyPhotoComponent],
   template: `
   <h1>The Curious Martian Rover</h1>
   <app-camera-wheel [cameraNames] = "cameraNameArray" [isAvailable] = "availableCaemraMap()" [cameraSelectionState] = "cameraSelectionState" (cameraPanelClickEvent)="onCameraSelection($event)"/>
@@ -18,9 +19,7 @@ import { CameraWheelComponent } from './components/camera-wheel/camera-wheel.com
   <button (click) = "onNextRequest()">→</button> 
   <button (click) = "onPreviousRequest()">←</button>
   <button (click) = "onRandomizeButton()">Randomize</button>
-  <img src="{{displayedPhoto().imgSrc}}"/> 
-  <p>ID: <span>{{displayedPhoto().id}}</span> | Camera: <span>{{displayedPhoto().camera}}</span> </p>
-  <p>Sole: <span>{{displayedPhoto().sol}}</span> | EarthDate: <span>{{displayedPhoto().earthDate}}</span></p>`,
+  <app-dispaly-photo [displayedPhoto]="displayedPhoto()">`,
   styleUrl: './app.component.css'
 })
 
@@ -36,8 +35,9 @@ export class AppComponent implements OnInit, OnDestroy {
   availableCaemraMap =this.photoServ.availableCameraMap;
   //camera Current State
   cameraSelectionState = this.photoServ.cameraSelectionState;
-
+  //array of photos filtered by current camera selection
   roverPhotos = this.photoServ.roverPhotos;
+
   currentPhotoNumber = computed(() =>{if(this.photoServ.indexOfDispalyed() < 0 ){ return this.roverPhotos().length
   }else{return this.photoServ.indexOfDispalyed()+1}});
 
