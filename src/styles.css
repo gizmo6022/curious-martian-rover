@@ -97,31 +97,34 @@ h2 span{
 .camera-wheel-wrapper{
     display: contents;
 }
-
-
-app-camera-wheel{
-     position: relative;
-}
 button{
     background: transparent;
     transition-duration: 0.4s;
     background-color: rgb(7, 94, 29);
     border: none;
-    font-size: 2rem;
-    grid-column: 1 / 4;
+    
     text-align: center;
     padding:  1rem .5rem;
     
-
-    font-size: 3rem;
+ 
+    font-size: 2vw;
     color: rgb(18, 24, 18);
     border-radius: 30px;
     padding: 10px 20px;
-}
-button:hover{
+ }
+ button:hover{
     background-color:  rgb(2, 202, 52);
     
-}
+ }
+ .encapsulated{
+    border-radius: 50px;
+    border-color: rgb(7, 94, 29);
+    border: solid 10px;
+    padding: 20px;
+ }
+
+
+
 
 
 /* ----------------------------------- end Button -------------------------------- */

@@ -7,20 +7,19 @@ import { CommonModule} from '@angular/common';
   imports: [CommonModule],
   template:`
     <div id = "cameraWheel">
-    <div class ="spinner-shader" id="spinner-light"></div>
-    <div class ="spinner-shader" id="spinner-shadow"></div>
-    <div id="spinner-center"></div>
-    <div id="spinner-shroud"></div>
-    <div #panelRef id="activity-wheel-wrapper" [style]="cameraRotation()">
-      @for(camera of cameraNames; track camera;){
-        <div class="camera-panel" id ="camera{{$index}}" [style]="rotatePanel($index)" [ngClass] = "panelClass(camera)">
-        <span (click)="cameraPanelClick(camera)">{{camera}}</span>
+      <div class ="spinner-shader" id="spinner-light"></div>
+      <div class ="spinner-shader" id="spinner-shadow"></div>
+      <div id="spinner-center"></div>
+      <div #panelRef id="activity-wheel-wrapper" [style]="cameraRotation()">
+        @for(camera of cameraNames; track camera;){
+          <div class="camera-panel" id ="camera{{$index}}" [style]="rotatePanel($index)" [ngClass] = "panelClass(camera)">
+            <span (click)="cameraPanelClick(camera)">{{camera}}</span>
+          </div>
+        }
       </div>
-      }
-    </div>
       <div id="spinner-needle"></div>
-      </div>
-      <div id = "buttonWrapper">
+    </div>
+    <div id = "buttonWrapper">
       <button class = "dirButtons" (click)="rotatePanelArrowButton(true)"> ↑ </button>
       <button class = "dirButtons"(click)="rotatePanelArrowButton(false)"> ↓ </button>
     </div> 

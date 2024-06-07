@@ -10,6 +10,10 @@
     background-color: rgba(0, 0, 0, 0.849);
     z-index: 999;
 }
+#img-wrapper{
+    height: ;
+    max-width: 100%;
+}
 
 .close-div{
     position: absolute;
@@ -28,6 +32,11 @@
    font-weight: 700;
    padding: 3vh;
 }
+#label-wrapper{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
 #img-label span{
     font-weight: 800;
@@ -38,7 +47,14 @@
     font-size: 1.5em;
 
 }
+#display-image{
+    max-height: 100%;
+    max-width: 80%;
+    margin: auto;
+    width: auto;
+    
+}
 .magnified-img #display-image{
-    max-height: 90vh;
-    max-width: 90vw;
+    max-height: 80vh;
+    max-width: 80vw;
 }

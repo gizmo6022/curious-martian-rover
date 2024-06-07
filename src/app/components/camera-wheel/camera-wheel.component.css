@@ -6,12 +6,13 @@
     justify-content: flex-start;
     min-width: none;
     overflow: hidden;
+    pointer-events: none;
+    border: solid;
 
     width: 16.5vw;
     height: 33vw;
     border-radius:  0 16.5vw 16.5vw 0;
-    margin: 0 1vw 0 0;
-    pointer-events: none;
+
 }
 
 #activity-wheel-wrapper{
@@ -31,19 +32,6 @@
     }
 }
 
-#spinner-shroud{
-    width: 0;
-    position: absolute;
-    left: -100%;
-    top: 0;
-    background: rgb(18, 24, 18);
-    z-index: 16;
-    align-self: start;
-
-    border-right: 1vw solid rgb(7, 94, 29);
-    height: 100%;
-    pointer-events: none;
-} 
 #spinner-center{
     position: absolute;
     background: rgb(7, 94, 29);
@@ -128,3 +116,10 @@
     background-color: rgb(16, 54, 26) !important;
     cursor: pointer;
 }
+
+#buttonWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
