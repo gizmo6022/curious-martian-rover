@@ -11,7 +11,7 @@ import { RoverPhoto } from '../../../../RoverPhoto';
       <div id ="label-wrapper">
         <p id = 'img-label'>ID: <span>{{displayedPhoto.id}}</span> | Camera: <span>{{displayedPhoto.camera}}</span> Sole: <span>{{displayedPhoto.sol}} </span> 
         | EarthDate: <span>{{displayedPhoto.earthDate}}</span></p>
-        <img id = "display-image" ngSrc="{{displayedPhoto.imgSrc}}" (click) ='magnifyImg()' priority>
+        <img id = "display-image" src="{{displayedPhoto.imgSrc}}" (click) ='magnifyImg()' priority>
       </div> 
   </div> `,
   styleUrl: './dispaly-photo.component.css'

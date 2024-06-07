@@ -10,10 +10,7 @@
     background-color: rgba(0, 0, 0, 0.849);
     z-index: 999;
 }
-#img-wrapper{
-    height: ;
-    max-width: 100%;
-}
+
 
 .close-div{
     position: absolute;
@@ -32,11 +29,6 @@
    font-weight: 700;
    padding: 3vh;
 }
-#label-wrapper{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
 
 #img-label span{
     font-weight: 800;
@@ -44,14 +36,22 @@
 #img-label{
     margin: 10px auto;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.1em;
 
 }
+
+#label-wrapper{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height:40vw ;
+}
+
 #display-image{
-    max-height: 100%;
-    max-width: 80%;
+    max-height: 90%;
     margin: auto;
     width: auto;
+    max-width: 100%;
     
 }
 .magnified-img #display-image{

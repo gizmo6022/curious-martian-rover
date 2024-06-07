@@ -12,7 +12,7 @@ import { DispalyPhotoComponent } from '../../components/dispaly-photo/dispaly-ph
   standalone: true,
   imports: [CommonModule, PhotoSelectionContainerComponent, CameraWheelComponent, DispalyPhotoComponent],
   template: `
-    <div class = "encapsulated">
+    <div class = "encapsulated" id = 'current-img'>
       <app-dispaly-photo [displayedPhoto]="displayedPhoto()"/>
     </div>
 

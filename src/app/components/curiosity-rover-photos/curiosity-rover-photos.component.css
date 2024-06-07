@@ -6,13 +6,16 @@ app-camera-wheel{
     float: right;
 }
 app-dispaly-photo{
-    max-width: 70vw;
+    display: block;
+    height: vw;
+    width: 80vw;
 }
 #photo-control-panel{
     position: relative;
     display: flex;
     justify-content: center;
     align-items: stretch;
+    grid-area: panel;
 }
 
 #photo-btns{
@@ -29,10 +32,13 @@ app-dispaly-photo{
         border-radius: 20px 0 0 20px;
         border-width: 2px;
 }
+#current-img{
+    grid-area: photo;
+}
 
 #camera-name{
     grid-area: name;
-    max-width: 13vw;
+    width: 13vw;
     text-align: center;
     align-self: start;
     font-weight: bold;
