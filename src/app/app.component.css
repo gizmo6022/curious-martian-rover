@@ -1,8 +1,8 @@
 app-curiosity-rover-photos{
     display: grid;
-    grid-template-areas: 'photo photo'
-                'panel info';
-
-                gap: 10px;
-
+    grid-template-areas: 'photo photo photo panel camera';
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-items: stretch;
+    align-content: stretch;
 }

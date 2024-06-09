@@ -14,8 +14,15 @@
     border-radius:  0 16.5vw 16.5vw 0;
 
 }
+#wheel-wrapper{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+}
 
-#activity-wheel-wrapper{
+#camera-wheel-inner-wrapper{
     position: relative;
     overflow: visible;
     animation:spin 1s ease-in 1;
@@ -118,8 +125,12 @@
 }
 
 #buttonWrapper{
+    position: absolute;
+    right: 0;
     display: flex;
+    height: 100%;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-self: stretch;
 }
 

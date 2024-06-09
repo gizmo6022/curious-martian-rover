@@ -6,11 +6,12 @@ import { CommonModule} from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template:`
+    <div id = "wheel-wrapper">
     <div id = "cameraWheel">
       <div class ="spinner-shader" id="spinner-light"></div>
       <div class ="spinner-shader" id="spinner-shadow"></div>
       <div id="spinner-center"></div>
-      <div #panelRef id="activity-wheel-wrapper" [style]="cameraRotation()">
+      <div #panelRef id="camera-wheel-inner-wrapper" [style]="cameraRotation()">
         @for(camera of cameraNames; track camera;){
           <div class="camera-panel" id ="camera{{$index}}" [style]="rotatePanel($index)" [ngClass] = "panelClass(camera)">
             <span (click)="cameraPanelClick(camera)">{{camera}}</span>
@@ -22,7 +23,8 @@ import { CommonModule} from '@angular/common';
     <div id = "buttonWrapper">
       <button class = "dirButtons" (click)="rotatePanelArrowButton(true)"> ↑ </button>
       <button class = "dirButtons"(click)="rotatePanelArrowButton(false)"> ↓ </button>
-    </div> 
+    </div>
+    </div>
       `,
   styleUrl: './camera-wheel.component.css'
 })
