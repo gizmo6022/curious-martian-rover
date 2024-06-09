@@ -1,4 +1,5 @@
-# CuriousMartianRover
+# CuriousMartianRover - Angular front end to display the most recent photos from NASA's Curosity Rover
+!!! for currrent Developoment purposes, the Demo API is being used instead of connecting the proxy API !!!
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
 
