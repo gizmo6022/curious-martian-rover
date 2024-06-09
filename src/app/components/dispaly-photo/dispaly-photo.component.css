@@ -30,16 +30,6 @@
    padding: 3vh;
 }
 
-#img-label span{
-    font-weight: 800;
-}
-#img-label{
-    margin: 10px auto;
-    text-align: center;
-    font-size: 1.1em;
-
-}
-
 #label-wrapper{
     display: flex;
     justify-content: center;
@@ -47,14 +37,19 @@
     height:40vw ;
 }
 
+/* same as min height on  the component styling in curosity rover photo componenet  */
 #display-image{
-    max-height: 90%;
-    margin: auto;
+    max-height: 40vw;
     width: auto;
     max-width: 100%;
     
 }
 .magnified-img #display-image{
-    max-height: 80vh;
-    max-width: 80vw;
+    max-height: 90vh;
+    max-width: 90vw;
+}
+#img-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,66 +1,29 @@
 app-camera-wheel{
-    position: relative;
     display: flex;
-    justify-content: center;
-    align-items: stretch;
-    float: right;
+
+
 }
 app-dispaly-photo{
-    display: block;
-    height: vw;
-    width: 80vw;
-}
-#photo-control-panel{
-    position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 40vw;
+    margin: 16px;
+}
+app-photo-info-panel{
+    position: relative;
+    display: flex;
+    justify-content: end;
     align-items: stretch;
-    grid-area: panel;
+    margin-left: 16px;
 }
 
-#photo-btns{
-        display: grid;
-        grid-template-areas:
-            'name name'
-          'readout readout'
-          'next prev'
-          'random random';
-        gap: 10px;
-        justify-items: center;
-        align-content: end;
 
-        border-radius: 20px 0 0 20px;
-        border-width: 2px;
-}
 #current-img{
-    grid-area: photo;
-}
-
-#camera-name{
-    grid-area: name;
-    width: 13vw;
-    text-align: center;
-    align-self: start;
-    font-weight: bold;
-    background-color: rgb(7, 94, 29);
-    color: rgb(18, 24, 18);
-    padding: 5px;
-
-}
-
-#index-photo-ind{
-    grid-area: readout;
-    font-size: 2vw;
-}
-
-#next-btn{
-    grid-area: next;
-}
-
-#prev-btn{
-    grid-area: prev;
-}
-
-#rand-btn {
-    grid-area: random;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    width: 100%;
+    padding: 0;
 }

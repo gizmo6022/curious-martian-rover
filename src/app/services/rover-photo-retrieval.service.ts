@@ -12,13 +12,13 @@ export class RoverPhotoRetrievalService {
       //service is structere to reduce the amount of HTTP requests made due to the limit set by nasas API
       //inital promises are stored in the Photos$ properties & Mainfest$
 
-      //api_key=DEMO_KEY
-      private key : string = "api_key=cL3nV3pm9mebhXYMAUoPbCZUDfNdKoPuHtl1x3Ca";
+      //
+      private key : string = "api_key=DEMO_KEY";
       private latestURL : string = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos?${this.key}`;
       private mainfestURL : string = `https://api.nasa.gov/mars-photos/api/v1/manifests/curiosity/?${this.key}`;
       //handles Async Fetch to API
       //remove String Argument!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FOR DEV ONLY
-      private Photos$ : Observable<RoverPhoto[]> = from(this.fetchLatestRoverPhotos("http://localhost:4200/assets/latest_photos.json"));
+      private Photos$ : Observable<RoverPhoto[]> = from(this.fetchLatestRoverPhotos());
 
       //action stream for camera selection
       private cameraSelectedSubject = new BehaviorSubject<string>('ALL');
