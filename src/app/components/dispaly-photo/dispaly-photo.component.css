@@ -37,11 +37,11 @@
     height:40vw ;
 }
 
+/* same as min height on  the component styling in curosity rover photo componenet  */
 #display-image{
     max-height: 40vw;
     width: auto;
     max-width: 100%;
-    padding: 8px;
     
 }
 .magnified-img #display-image{

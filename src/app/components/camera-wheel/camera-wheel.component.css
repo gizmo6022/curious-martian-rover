@@ -133,4 +133,7 @@
     justify-content: space-between;
     align-self: stretch;
 }
+#buttonWrapper button{
+    margin: 50% 0;
+}
 
