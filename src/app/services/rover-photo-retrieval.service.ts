@@ -18,7 +18,7 @@ export class RoverPhotoRetrievalService {
       private mainfestURL : string = `https://api.nasa.gov/mars-photos/api/v1/manifests/curiosity/?${this.key}`;
       //handles Async Fetch to API
       //remove String Argument!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FOR DEV ONLY
-      private Photos$ : Observable<RoverPhoto[]> = from(this.fetchLatestRoverPhotos());
+      private Photos$ : Observable<RoverPhoto[]> = from(this.fetchLatestRoverPhotos("../assets/latest_photos.json"));
 
       //action stream for camera selection
       private cameraSelectedSubject = new BehaviorSubject<string>('ALL');

@@ -1,18 +1,19 @@
-import { Component, OnDestroy, OnInit, computed } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterModule } from '@angular/router';
 import { RoverPhotoRetrievalService } from './services/rover-photo-retrieval.service';
 import { CuriosityRoverPhotosComponent } from './components/curiosity-rover-photos/curiosity-rover-photos.component';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, CuriosityRoverPhotosComponent],
+  imports: [CommonModule, RouterOutlet, CuriosityRoverPhotosComponent, RouterModule, NavbarComponent],
   template: `
-  <h1>The Curious Martian Rover</h1>
+  <app-navbar />
   <h2>Explore the latest photos from NASA's Curiosity Rover</h2>
-  <app-curiosity-rover-photos></app-curiosity-rover-photos>
+  <router-outlet></router-outlet>
+  <!-- <app-curiosity-rover-photos></app-curiosity-rover-photos> -->
   `,
   styleUrl: './app.component.css'
 })

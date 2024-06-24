@@ -1,0 +1,59 @@
+nav {
+    position: fixed;
+    display: flex;
+    width: 100vw;
+    background-color: rgb(18, 40, 18);
+    height: 80px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.navbar-links{
+    display: grid;
+    border-radius: 8px;
+    margin: 8px 0;
+    grid-template-columns: repeat(4, 7em);
+}
+
+
+.navbar-links li{   
+    margin: 0 20px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.navbar-links li, #marker{   
+    grid-row: 1/2;
+}
+
+.navbar-links li:hover a{
+    color: rgb(18, 40, 18);
+    cursor: pointer;
+}
+
+p{
+    margin: 0 20px;
+    font-size: 36px;
+}
+#marker{
+    position: relative;
+    z-index: -2;
+    background-color: rgb(12, 150, 46);
+    width: .15em;
+    transition: .4s;
+    grid-column: 1/2;
+}
+
+.home-link{
+    grid-column: 1/2;
+}
+.manifest-link{
+    grid-column: 2/3;
+}
+.camera-link{
+    grid-column: 3/4;
+}
+.about-link{
+    grid-column: 4/5;
+}
